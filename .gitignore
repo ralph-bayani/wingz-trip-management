@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env (keep examples only)
+.env
+.env.local
+!.env.example
+!.env*.example
+
+# API
+wingz-trip-management-api/.venv/
+wingz-trip-management-api/venv/
+wingz-trip-management-api/__pycache__/
+wingz-trip-management-api/**/__pycache__/
+wingz-trip-management-api/*.pyc
+wingz-trip-management-api/db.sqlite3
+wingz-trip-management-api/staticfiles/
+wingz-trip-management-api/media/
+
+# UI
+wingz-trip-management-ui/node_modules/
+wingz-trip-management-ui/.next/
+wingz-trip-management-ui/out/
+
+# Logs
+*.log

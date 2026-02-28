@@ -1,0 +1,19 @@
+# Core
+Django>=4.2,<5.0
+djangorestframework>=3.14,<4.0
+django-filter>=23.5
+django-cors-headers>=4.3.0
+
+# Database (SQLite for dev; use PostgreSQL in production for scale)
+# psycopg2-binary>=2.9  # uncomment for PostgreSQL
+
+# Auth
+djangorestframework-simplejwt>=5.3.0
+
+# Production server (e.g. Render)
+gunicorn>=21.0.0
+
+# Dev / quality
+pytest-django>=4.5.0
+black>=23.0.0
+flake8>=6.0.0
