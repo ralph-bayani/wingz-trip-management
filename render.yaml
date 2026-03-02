@@ -1,0 +1,36 @@
+# Render Blueprint: deploy API + UI from this repo (monorepo)
+# Connect this repo to Render → New Blueprint → it will create both services.
+# When prompted during Blueprint setup, set NEXT_PUBLIC_API_URL = https://wingz-api.onrender.com/api (your API service URL + /api).
+
+services:
+  # Backend – Django API
+  - type: web
+    name: wingz-api
+    runtime: python
+    region: oregon
+    rootDir: wingz-trip-management-api
+    buildCommand: pip install -r requirements.txt
+    startCommand: "python manage.py migrate && gunicorn ride_api.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: wingz-api.onrender.com
+      # CORS: allow the UI (same Render app)
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://wingz-ui.onrender.com
+
+  # Frontend – Next.js UI
+  - type: web
+    name: wingz-ui
+    runtime: node
+    region: oregon
+    rootDir: wingz-trip-management-ui
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    envVars:
+      # Set to your API URL, e.g. https://wingz-api.onrender.com/api (no trailing slash)
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
