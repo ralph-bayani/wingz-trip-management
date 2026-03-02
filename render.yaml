@@ -16,9 +16,10 @@ services:
         generateValue: true
       - key: DJANGO_DEBUG
         value: "false"
+      # Render assigns URLs like wingz-api-XXXX.onrender.com; .onrender.com allows any subdomain
       - key: DJANGO_ALLOWED_HOSTS
-        value: wingz-api.onrender.com
-      # CORS: allow the UI (same Render app)
+        value: ".onrender.com,localhost,127.0.0.1"
+      # CORS: set to your actual UI URL (e.g. https://wingz-ui-XXXX.onrender.com) in Dashboard if different
       - key: CORS_ALLOWED_ORIGINS
         value: https://wingz-ui.onrender.com
 
