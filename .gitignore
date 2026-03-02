@@ -28,6 +28,8 @@ wingz-trip-management-api/media/
 wingz-trip-management-ui/node_modules/
 wingz-trip-management-ui/.next/
 wingz-trip-management-ui/out/
+wingz-trip-management-ui/.env
+wingz-trip-management-ui/.env.local
 
 # Logs
 *.log

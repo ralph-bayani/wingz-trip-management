@@ -52,7 +52,7 @@ Use this repo (or the `wingz-trip-management-ui` folder as the root of its own r
 
 1. **Import** the Git repository (root = this UI project).
 2. **Environment variable** (in Vercel project settings):
-   - `NEXT_PUBLIC_API_URL` = your backend API base URL, e.g. `https://your-api.onrender.com/api` (no trailing slash).
+   - `NEXT_PUBLIC_API_URL` = your backend API base URL including `/api`, e.g. `https://your-api.onrender.com/api`.
 3. Deploy. Vercel will detect Next.js and run `npm run build` and serve the app.
 
 Ensure your backend (e.g. on Render) has `CORS_ALLOWED_ORIGINS` set to your Vercel URL (e.g. `https://your-project.vercel.app`).

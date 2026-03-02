@@ -1,6 +1,5 @@
-# Render Blueprint: deploy API + UI from this repo (monorepo)
-# Connect this repo to Render → New Blueprint → it will create both services.
-# When prompted during Blueprint setup, set NEXT_PUBLIC_API_URL = https://wingz-api.onrender.com/api (your API service URL + /api).
+# Render Blueprint: deploy API + UI from this repo (monorepo).
+# In Render: New → Blueprint → connect repo. When prompted, set NEXT_PUBLIC_API_URL to your API URL + /api (e.g. https://wingz-api-XXXX.onrender.com/api).
 
 services:
   # Backend – Django API

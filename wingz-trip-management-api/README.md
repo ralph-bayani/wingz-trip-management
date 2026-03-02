@@ -79,9 +79,9 @@ RESTful API built with Django REST Framework for managing ride information. Supp
 7. **(Optional) Load sample data** for testing:
 
    ```bash
-   python manage.py load_sample_rides
+   python manage.py load_sample_rides --replace
    ```
-   This creates a few users and rides with ride events. Run after migrations.
+   Creates admin user (admin@example.com / adminpass), drivers, riders, and 30 sample rides with events. Run after migrations. Use `--replace` to clear existing rides and reload.
 
 ---
 
@@ -103,19 +103,15 @@ python manage.py runserver
 Use this repo (or the `wingz-trip-management-api` folder as the root of its own repo) and connect it to [Render](https://render.com).
 
 1. **New → Web Service**, connect your Git repo (root = this API project).
-2. **Build**
-   - Build Command: `pip install -r requirements.txt`
-   - Or use the provided **Dockerfile** and set Render to use Docker.
-3. **Start**
-   - Start Command: `python manage.py migrate && gunicorn ride_api.wsgi:application --bind 0.0.0.0:$PORT`
-   - Install gunicorn: add `gunicorn` to `requirements.txt` if not present.
-4. **Environment variables** (set in Render dashboard):
-   - `DJANGO_SECRET_KEY` – strong random secret.
+2. **Build command:** `pip install -r requirements.txt` (or use the **Dockerfile**).
+3. **Start command:** `python manage.py migrate && gunicorn ride_api.wsgi:application --bind 0.0.0.0:$PORT`
+4. **Environment variables** (Render dashboard):
+   - `DJANGO_SECRET_KEY` – strong random secret (or use Render’s generate).
    - `DJANGO_DEBUG` – `false`.
-   - `DJANGO_ALLOWED_HOSTS` – your Render host, e.g. `your-app.onrender.com`.
-   - `CORS_ALLOWED_ORIGINS` – your Vercel frontend URL, e.g. `https://your-ui.vercel.app` (no trailing slash).
+   - `DJANGO_ALLOWED_HOSTS` – `.onrender.com,localhost,127.0.0.1` (leading dot allows any `*.onrender.com` host).
+   - `CORS_ALLOWED_ORIGINS` – your frontend origin, e.g. `https://wingz-ui.onrender.com` or `https://your-ui.vercel.app` (no trailing slash).
 
-After first deploy, run migrations (if not in start command) and create an admin user / load data via Render shell or one-off job.
+5. **After first deploy:** open **Shell** and run `python manage.py load_sample_rides --replace` to create the demo admin user and sample rides. Then log in at the frontend with **admin@example.com** / **adminpass**.
 
 ---
 
