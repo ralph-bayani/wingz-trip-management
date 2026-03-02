@@ -95,6 +95,11 @@ export default function LoginPage() {
           <p className="mt-4 text-center text-xs text-surface-500 dark:text-gray-400">
             Only users with admin role can access the dashboard.
           </p>
+          {process.env.NEXT_PUBLIC_SHOW_DEMO_CREDENTIALS !== "false" && (
+            <p className="mt-3 rounded-lg bg-surface-100 dark:bg-gray-700/50 px-3 py-2 text-center text-xs text-surface-600 dark:text-gray-400">
+              <span className="font-medium">Demo:</span> admin@example.com / adminpass
+            </p>
+          )}
         </div>
         <p className="mt-4 text-center text-sm text-surface-600 dark:text-gray-400">
           Back to{" "}

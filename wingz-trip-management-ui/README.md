@@ -36,7 +36,13 @@ Next.js + Tailwind UI for testing the ride management API. Login with an admin u
 
 - Backend must be running (e.g. `py manage.py runserver` in the API project, or use the API deployed on Render).
 - Backend must allow CORS from your frontend origin (localhost in dev; your Vercel URL in production).
-- Use an admin user to sign in (e.g. from `python manage.py load_sample_rides`: **admin@example.com** / **adminpass**).
+- Use an admin user to sign in. After running `python manage.py load_sample_rides` on the backend, use **admin@example.com** / **adminpass**.
+
+### Demo credentials (for client testing)
+
+The login page can show a **demo** hint: `admin@example.com` / `adminpass`. This is on by default so testers can log in without separate instructions.
+
+- To **hide** the hint (e.g. for production): set `NEXT_PUBLIC_SHOW_DEMO_CREDENTIALS=false` and rebuild.
 
 ---
 
