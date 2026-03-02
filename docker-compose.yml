@@ -1,0 +1,38 @@
+# Wingz Trip Management – API + UI
+# Run: docker-compose up --build
+# UI: http://localhost:3000  |  API: http://localhost:8000/api
+
+services:
+  api:
+    build:
+      context: ./wingz-trip-management-api
+      dockerfile: Dockerfile
+    container_name: wingz-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-dev-secret-docker}
+      - DJANGO_DEBUG=true
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,api
+    healthcheck:
+      test: ["CMD", "python", "manage.py", "check"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  ui:
+    build:
+      context: ./wingz-trip-management-ui
+      dockerfile: Dockerfile
+      args:
+        # Browser calls API at host:8000
+        NEXT_PUBLIC_API_URL: http://localhost:8000/api
+    container_name: wingz-ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
