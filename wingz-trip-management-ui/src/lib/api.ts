@@ -1,8 +1,8 @@
-const getBaseUrl = () => {
-  if (typeof window !== "undefined") {
-    return process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api";
-  }
-  return process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api";
+const getBaseUrl = (): string => {
+  const url = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api";
+  const trimmed = url.trim().replace(/\/+$/, "");
+  if (trimmed.endsWith("/api")) return trimmed;
+  return `${trimmed}/api`;
 };
 
 export function getApiUrl(path: string): string {
